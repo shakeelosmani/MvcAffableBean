@@ -1,0 +1,88 @@
+﻿@model MvcAffableBean.Models.Category
+
+@{
+    ViewBag.Title = @Model.Name;
+}
+
+
+<br/>
+<br/>
+
+<div class="row">
+    <div class="col-xs-12 col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            @if(Model.Name=="Dairy")
+            {
+                <li class="active">
+                    <a href="~/StoreFront/Index/1">DAIRY</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                     <a href="~/StoreFront/Index/1">DAIRY</a>
+                </li>
+            }
+            @if (Model.Name == "Meats")
+            {
+                <li class="active">
+                    <a href="~/StoreFront/Index/2">MEATS</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="~/StoreFront/Index/2">MEATS</a>
+                </li>
+            }
+            @if (Model.Name == "Bakery")
+            {
+                <li class="active">
+                    <a href="~/StoreFront/Index/3">BAKERY</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="~/StoreFront/Index/3">BAKERY</a>
+                </li>
+            }
+            @if (Model.Name == "Fruits")
+            {
+                <li class="active">
+                    <a href="~/StoreFront/Index/4">FRUIT &amp; VEG</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="~/StoreFront/Index/4">FRUIT &amp; VEG</a>
+                </li>
+            }
+            
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-xs-12 col-md-3">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="~/Content/Images/Products/@(product.Name).png">
+                        <div class="caption text-center">
+                            <p>
+                                <b>Name:</b> <span>@product.Name</span>
+                            </p>
+                            <p>
+                                <b>Price:</b> <span>@product.Price USD</span>
+                            </p>
+                            <p class="text-center">
+                                @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = product.Id }, new {@class="btn btn-info"})
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

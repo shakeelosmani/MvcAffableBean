@@ -1,0 +1,81 @@
+﻿@using System.Diagnostics.Eventing.Reader
+@using System.Globalization
+@model MvcAffableBean.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Store Checkout";
+    CultureInfo us = new CultureInfo("en-US");
+}
+
+
+<h3 class="text-center">
+     <span><img src="~/Content/Images/shoping_cart.png" />Your shopping cart:</span>
+</h3>
+
+<div id="update-message" class="text-info">
+</div>
+@if (Model.CartItems.Count==0)
+{
+    <a class="btn-danger" href="~/StoreFront/Index/1">Your shopping cart is empty, continue shopping---></a>
+}
+else
+{
+    <table class="table-responsive table-bordered table-striped">
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Price (each)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>Sub-total</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="row-@item.ProductId">
+                <td>
+                    @Html.ActionLink(item.Product.Name, "Details", "Products", new {id = item.ProductId}, null)
+                </td>
+                <td>
+                    @item.Product.Price
+                </td>
+                <td id="item-count-@item.ProductId">
+                    @item.Count
+                </td>
+                <td>
+                    @((item.Product.Price*item.Count).ToString("c",us))
+                </td>
+                <td>
+                    <a href="" class="RemoveLink" data-id="@item.ProductId">
+                        Remove from cart
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                Total
+            </td>
+            <td></td>
+            <td></td>
+            <td id="cart-total" class="text-success">
+                <b>@Model.CartTotal.ToString("C",us)</b>
+            </td>
+        </tr>
+    </table>
+
+    <p class="button">
+        <a href="~/StoreFront/Index/1">Continue shopping>></a>
+    </p>
+    <p class="button">
+        @Html.ActionLink("Checkout>> ", "AddressAndPayment", "Checkout")
+    </p>
+}
+
+
+
+
