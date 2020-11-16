@@ -1,0 +1,19 @@
+<html>
+<head>
+<link href="images/ap.css" rel="stylesheet">
+</head>
+<body>
+<center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2>Login Failed</h2>
+<br>
+Please Enter the proper empno and password
+<br>
+<br>
+<a href="AdminLogin.html">Re-Login</a>
+</body>
+</html>
